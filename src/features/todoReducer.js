@@ -38,5 +38,14 @@ export const todoReducer = createReducer(initialState, (builder) => {
         console.log(action.payload)
         return item.id === action.payload;
       });
-    });
+    })
+    .addCase(changeTodo, (state, action) => {
+      state.todos.map((item) => {
+        if (item.id === action.payload) {
+          item.favorite = !item.favorite
+          return item
+        }
+        return item
+      })
+    })
 });
